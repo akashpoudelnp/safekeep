@@ -8,7 +8,7 @@
         <div class="py-12 px-12 bg-white rounded-2xl shadow-xl z-20">
             <div>
                 <h1 class="text-3xl font-bold text-center mb-4 cursor-pointer">Hi {{Auth()->user()->name}}</h1>
-                <p class="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Enter your secret key to decrypt the stuffs!</p>
+                <p class="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Enter your secret key to decrypt your secrets!</p>
             </div>
             <div class="space-y-4">
                 <form action="{{route("showall")}}" method="POST">
@@ -26,6 +26,9 @@
                 <div class="text-center mt-6">
                     <a href="{{ url('word/create') }}"
                     class="py-4 px-2 text-xl text-white bg-green-400 rounded-2xl  ">Add New Secret</a>
+                </div>
+                <div class="text-center mt-6">
+                   <small class="text-gray-400">&copy; Aakash</small>
                 </div>
             </div>
             <div
