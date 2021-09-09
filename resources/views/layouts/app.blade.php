@@ -13,9 +13,9 @@
         <!-- Styles -->
         {{-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> --}}
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-
-        @livewireStyles
         @laravelPWA
+        @livewireStyles
+
         <!-- Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="{{ mix('js/app.js') }}" defer></script>
