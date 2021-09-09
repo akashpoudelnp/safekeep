@@ -139,7 +139,7 @@ class WordController extends Controller
 
         $word->save();
         return redirect()
-            ->route('dashboard')
+            ->route('word.create')
             ->with('success', 'A Secret has been added sucessfully!');
     }
 

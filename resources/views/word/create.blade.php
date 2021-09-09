@@ -16,6 +16,13 @@
       </div>
     <div>
         @endif
+        @if(session('success'))
+
+
+         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-1 m-2 rounded relative" role="alert">
+            <strong class="font-bold">{{ session('success') }}</strong>
+          </div>
+        @endif
 
         <div class="p-9">
 
