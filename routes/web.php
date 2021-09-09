@@ -19,6 +19,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', [HomeController::class,"dashboard"])->name('dashboard');
     Route::post('/showall', [WordController::class,"showall"])->name('showall');
+    Route::post('/exportascsv', [WordController::class,"exportascsv"])->name('exportascsv');
+    Route::get('/exportascsv', function()
+    {
+            abort(404);
+    });
+
+    Route::get('/exportCSV', [WordController::class,"exportCSV"])->name('exportCSV');
+
+
+
     Route::get('/showall',  function()
     {
             return redirect()->route("dashboard");

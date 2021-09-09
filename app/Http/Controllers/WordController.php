@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Word;
 use App\Services\JackKrypt;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class WordController extends Controller
 {
@@ -15,6 +18,60 @@ class WordController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function exportCSV()
+    {
+        return view("word.exportcsv");
+    }
+    public function exportascsv(Request $request)
+    {
+        if ($request->isMethod('get')) {
+            abort(404);
+        }
+        $request->validate([
+
+            'key' => ['required'],
+
+
+        ]);
+        $key = $request->key;
+
+        $dt = new DateTime();
+
+        $now = $dt->format('Y-m-d-H-i-s');
+        $fileName = "exported-safekeep-$now.csv";
+        $words = Word::where("user_id", Auth()->user()->id)->orderBy('title', 'ASC')->get();
+        if (!$words->count() >= 1) {
+            abort(404);
+        }
+        foreach ($words as $word) {
+            $de_phrase[$word->id] = JackKrypt::decrypt($word->phrase, $key);
+            $integrity[$word->id] = JackKrypt::CheckHash($word->title, $word->phrase, $word->hash, $key);
+        }
+        $headers = array(
+            "Content-type"        => "text/csv; charset=utf-8",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        $columns = array('Title', 'Secret', 'Date');
+
+        $callback = function () use ($words, $columns, $de_phrase) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+            foreach ($words as $word) {
+                $row['Title']  = $word->title;
+                $row['Secret']    = $de_phrase[$word->id];
+                $row['Creation Date']  = Carbon::parse($word->created_at)->format('d-m-Y');
+
+                fputcsv($file, array($row['Title'], $row['Secret'], $row['Creation Date']));
+            }
+
+            fclose($file);
+        };
+        return (new StreamedResponse($callback, 200, $headers))->sendContent();
+    }
     public function showall(Request $request)
     {
         $request->validate([
@@ -23,22 +80,23 @@ class WordController extends Controller
 
 
         ]);
-        $key= $request->key;
-        $words= Word::where("user_id",Auth()->user()->id)->orderBy('title', 'ASC')->get();
-        if(!$words->count()>=1)
-        {
-            abort(403,"No Secrets have been saved yet");
+        $key = $request->key;
+        $words = Word::where("user_id", Auth()->user()->id)->orderBy('title', 'ASC')->get();
+        if (!$words->count() >= 1) {
+            abort(403, "No Secrets have been saved yet");
         }
         foreach ($words as $word) {
-            $de_phrase[$word->id]= JackKrypt::decrypt($word->phrase,$key);
-            $integrity[$word->id]= JackKrypt::CheckHash($word->title,$word->phrase,$word->hash,$key);
+            $de_phrase[$word->id] = JackKrypt::decrypt($word->phrase, $key);
+            $integrity[$word->id] = JackKrypt::CheckHash($word->title, $word->phrase, $word->hash, $key);
         }
-        return view("word.showall")->with("words",$words)->with('de_phrase',$de_phrase)->with('integrity',$integrity);
+
+
+
+
+        return view("word.showall")->with("words", $words)->with('de_phrase', $de_phrase)->with('integrity', $integrity);
     }
     public function index()
     {
-
-
     }
 
     /**
@@ -48,7 +106,7 @@ class WordController extends Controller
      */
     public function create()
     {
-       return view("word.create");
+        return view("word.create");
     }
 
     /**
@@ -67,24 +125,22 @@ class WordController extends Controller
 
         ]);
 
-        if(!Hash::check($request->secret,auth()->user()->password) )
-        {
+        if (!Hash::check($request->secret, auth()->user()->password)) {
             return redirect()->back()->withErrors('Password not matched to this account');
         }
 
-        $pre_hash= $request->title.$request->phrase;
-       $en_phrase= JackKrypt::encrypt($request->phrase,$request->secret);
-        $word= new Word;
-        $word->user_id= auth()->user()->id;
-        $word->title= $request->title;
-        $word->phrase=  $en_phrase;
-        $word->hash= Hash::make($pre_hash);
+        $pre_hash = $request->title . $request->phrase;
+        $en_phrase = JackKrypt::encrypt($request->phrase, $request->secret);
+        $word = new Word;
+        $word->user_id = auth()->user()->id;
+        $word->title = $request->title;
+        $word->phrase =  $en_phrase;
+        $word->hash = Hash::make($pre_hash);
 
         $word->save();
         return redirect()
-        ->route('dashboard')
-        ->with('success', 'A Secret has been added sucessfully!');
-
+            ->route('dashboard')
+            ->with('success', 'A Secret has been added sucessfully!');
     }
 
     /**

@@ -19,7 +19,8 @@
                     <div class="tools flex flex-row-reverse place-items-stretch p-2">
                         <a href="{{ url('word/create') }}"
                             class="bg-green-400 rounded text-blue-50 hover:bg-green-300 p-1 mx-2">Add New</a>
-                        <a href="" class="bg-blue-400 rounded text-blue-50 hover:bg-blue-300 p-1">Export as CSV</a>
+
+                        <a href="{{url("/exportCSV")}}" class="bg-blue-400 rounded text-blue-50 hover:bg-blue-300 p-1">Export as CSV</a>
                     </div>
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
