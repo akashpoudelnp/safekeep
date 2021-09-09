@@ -1091,14 +1091,11 @@ select {
 .top-0 {
 	top: 0px;
 }
-.bottom-0 {
-	bottom: 0px;
-}
 .-bottom-6 {
 	bottom: -1.5rem;
 }
-.-right-10 {
-	right: -2.5rem;
+.-right-8 {
+	right: -2rem;
 }
 .bottom-20 {
 	bottom: 5rem;
@@ -1127,14 +1124,14 @@ select {
 .col-span-3 {
 	grid-column: span 3 / span 3;
 }
+.m-2 {
+	margin: 0.5rem;
+}
 .m-auto {
 	margin: auto;
 }
 .m-4 {
 	margin: 1rem;
-}
-.m-2 {
-	margin: 0.5rem;
 }
 .mx-auto {
 	margin-left: auto;
