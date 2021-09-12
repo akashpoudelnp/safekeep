@@ -155,6 +155,15 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('word.create') }}" :active="request()->routeIs('word.create')">
+                {{ __('Add Secrets') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('exportCSV') }}" :active="request()->routeIs('exportCSV')">
+                {{ __('Export Secrets') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('restore') }}" :active="request()->routeIs('restore')">
+                {{ __('Restore Secrets') }}
+            </x-jet-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

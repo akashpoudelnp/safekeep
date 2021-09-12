@@ -1091,23 +1091,29 @@ select {
 .top-0 {
 	top: 0px;
 }
-.-bottom-6 {
-	bottom: -1.5rem;
-}
-.-right-8 {
-	right: -2rem;
-}
 .bottom-20 {
 	bottom: 5rem;
 }
 .left-10 {
 	left: 2.5rem;
 }
+.bottom-5 {
+	bottom: 1.25rem;
+}
+.left-5 {
+	left: 1.25rem;
+}
 .-top-5 {
 	top: -1.25rem;
 }
 .-left-16 {
 	left: -4rem;
+}
+.-bottom-5 {
+	bottom: -1.25rem;
+}
+.-right-6 {
+	right: -1.5rem;
 }
 .z-0 {
 	z-index: 0;
@@ -1274,14 +1280,14 @@ select {
 .h-20 {
 	height: 5rem;
 }
-.h-48 {
-	height: 12rem;
-}
 .h-40 {
 	height: 10rem;
 }
 .h-60 {
 	height: 15rem;
+}
+.h-48 {
+	height: 12rem;
 }
 .min-h-screen {
 	min-height: 100vh;
@@ -1375,12 +1381,12 @@ select {
 	--tw-translate-y: 0px;
 	transform: var(--tw-transform);
 }
-.rotate-12 {
-	--tw-rotate: 12deg;
-	transform: var(--tw-transform);
-}
 .rotate-45 {
 	--tw-rotate: 45deg;
+	transform: var(--tw-transform);
+}
+.rotate-12 {
+	--tw-rotate: 12deg;
 	transform: var(--tw-transform);
 }
 .scale-95 {
@@ -1514,11 +1520,11 @@ select {
 .rounded-none {
 	border-radius: 0px;
 }
-.rounded-xl {
-	border-radius: 0.75rem;
-}
 .rounded-2xl {
 	border-radius: 1rem;
+}
+.rounded-xl {
+	border-radius: 0.75rem;
 }
 .rounded-l-md {
 	border-top-left-radius: 0.375rem;
@@ -1654,17 +1660,13 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(96, 165, 250, var(--tw-bg-opacity));
 }
-.bg-blue-300 {
-	--tw-bg-opacity: 1;
-	background-color: rgba(147, 197, 253, var(--tw-bg-opacity));
-}
 .bg-green-400 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(52, 211, 153, var(--tw-bg-opacity));
 }
-.bg-red-400 {
+.bg-blue-300 {
 	--tw-bg-opacity: 1;
-	background-color: rgba(248, 113, 113, var(--tw-bg-opacity));
+	background-color: rgba(147, 197, 253, var(--tw-bg-opacity));
 }
 .bg-blue-100 {
 	--tw-bg-opacity: 1;
@@ -2143,6 +2145,10 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(110, 231, 183, var(--tw-text-opacity));
 }
+.hover\:text-blue-500:hover {
+	--tw-text-opacity: 1;
+	color: rgba(59, 130, 246, var(--tw-text-opacity));
+}
 .focus\:z-10:focus {
 	z-index: 10;
 }
@@ -2257,6 +2263,10 @@ select {
 .focus\:ring-offset-2:focus {
 	--tw-ring-offset-width: 2px;
 }
+.active\:border-blue-200:active {
+	--tw-border-opacity: 1;
+	border-color: rgba(191, 219, 254, var(--tw-border-opacity));
+}
 .active\:bg-gray-100:active {
 	--tw-bg-opacity: 1;
 	background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
@@ -2284,6 +2294,10 @@ select {
 .active\:text-gray-800:active {
 	--tw-text-opacity: 1;
 	color: rgba(31, 41, 55, var(--tw-text-opacity));
+}
+.active\:text-blue-400:active {
+	--tw-text-opacity: 1;
+	color: rgba(96, 165, 250, var(--tw-text-opacity));
 }
 .disabled\:text-blue-300:disabled {
 	--tw-text-opacity: 1;

@@ -62,11 +62,11 @@
                                                 </td>
 
                                                     <td class="px-6 py-4 whitespace-nowrap">
-                                                      <div id="ph-{{$word->id}}">
+                                                      <div id="ph-{{$word->id}}" class="p-2 border-2 border-gray-200 bg-gray-100">
                                                         {{$de_phrase[$word->id]}}
                                                       </div>
                                                       <div>
-                                                          <button class="bg-blue-100 text-blue-800 p-1 rounded disabled:text-blue-300  " id="ph-{{$word->id}}-btn" onclick="CopyToClipboard('ph-{{$word->id}}')">Copy</button>
+                                                          <button class="bg-blue-100 text-blue-800 p-1 rounded disabled:text-blue-300 hover:text-blue-500 active:text-blue-400 active:border-blue-200" data-clipboard-text=" {{$de_phrase[$word->id]}}" >Copy</button>
                                                       </div>
                                                         </td>
                                         <td class="px-6 py-4 whitespace-nowraptext-sm font-medium">
@@ -126,24 +126,24 @@
         }
     </script>
 <script>
-    function CopyToClipboard(containerid) {
-         var bt= containerid+"-btn";
-        var button= document.getElementById(bt);
-  if (document.selection) {
-    var range = document.body.createTextRange();
-    range.moveToElementText(document.getElementById(containerid));
-    range.select().createTextRange();
-    document.execCommand("copy");
 
 
-  } else if (window.getSelection) {
-    var range = document.createRange();
-    range.selectNode(document.getElementById(containerid));
-    window.getSelection().addRange(range);
-    document.execCommand("copy");
-    button.disabled=true;
-     button.innerHTML="Copied";
-  }
-}
+var btns = document.querySelectorAll('button');
+      var clipboard = new ClipboardJS(btns);
+      clipboard.on('success', function(e) {
+    console.info('Action:', 'actn');
+    console.info('Text:', 'Copied');
+    console.info('Trigger:', 'trig');
+
+    e.clearSelection();
+});
+
+clipboard.on('error', function(e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
+})
+
+
+
 </script>
 </x-app-layout>
