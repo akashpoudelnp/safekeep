@@ -19,16 +19,20 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', [HomeController::class,"dashboard"])->name('dashboard');
     Route::post('/showall', [WordController::class,"showall"])->name('showall');
+    //begin: export as csv routes
     Route::post('/exportascsv', [WordController::class,"exportascsv"])->name('exportascsv');
-    Route::get('/exportascsv', function()
-    {
-            abort(404);
-    });
+    Route::get('/exportascsv', [WordController::class,"exportCSV"])->name('exportCSV');
+    //end exporting as csv routes
+    //begin restore csv
+    Route::get('/restore', [WordController::class,"restore"])->name('restore');
+    Route::post('/restore', [WordController::class,"executerestore"])->name('executerestore');
+    //end restorecsv
+     //begin delete all secrets
+     Route::get('/emptysecrets', [WordController::class,"emptysecretsview"])->name('emptysecretsview');
+     Route::post('/emptysecrets', [WordController::class,"emptysecrets"])->name('emptysecrets');
+     //end delete all secrets
 
-    Route::get('/exportCSV', [WordController::class,"exportCSV"])->name('exportCSV');
-
-
-
+    //protecting showall route
     Route::get('/showall',  function()
     {
             return redirect()->route("dashboard");

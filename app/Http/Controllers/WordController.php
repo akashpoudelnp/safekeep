@@ -34,7 +34,9 @@ class WordController extends Controller
 
         ]);
         $key = $request->key;
-
+        if (!Hash::check($request->key, auth()->user()->password)) {
+            return redirect()->back()->withErrors('Password not matched to this account');
+        }
         $dt = new DateTime();
 
         $now = $dt->format('Y-m-d-H-i-s');
@@ -47,6 +49,7 @@ class WordController extends Controller
             $de_phrase[$word->id] = JackKrypt::decrypt($word->phrase, $key);
             $integrity[$word->id] = JackKrypt::CheckHash($word->title, $word->phrase, $word->hash, $key);
         }
+
         $headers = array(
             "Content-type"        => "text/csv; charset=utf-8",
             "Content-Disposition" => "attachment; filename=$fileName",
@@ -72,6 +75,7 @@ class WordController extends Controller
         };
         return (new StreamedResponse($callback, 200, $headers))->sendContent();
     }
+
     public function showall(Request $request)
     {
         $request->validate([
@@ -81,9 +85,13 @@ class WordController extends Controller
 
         ]);
         $key = $request->key;
+        if (!Hash::check($request->key, auth()->user()->password)) {
+            return redirect()->back()->withErrors('Password not matched to this account');
+        }
+
         $words = Word::where("user_id", Auth()->user()->id)->orderBy('title', 'ASC')->get();
         if (!$words->count() >= 1) {
-            abort(403, "No Secrets have been saved yet");
+            return redirect()->back()->withErrors('You have not added any secrets yet!');
         }
         foreach ($words as $word) {
             $de_phrase[$word->id] = JackKrypt::decrypt($word->phrase, $key);
@@ -95,6 +103,68 @@ class WordController extends Controller
 
         return view("word.showall")->with("words", $words)->with('de_phrase', $de_phrase)->with('integrity', $integrity);
     }
+    public function emptysecretsview()
+    {
+        return view("word.deleteall");
+    }
+    public function emptysecrets(Request $request)
+    {
+        $request->validate([
+
+            'key' => ['required'],
+        ]);
+        $key = $request->key;
+        if (!Hash::check($request->key, auth()->user()->password)) {
+            return redirect()->back()->withErrors('Password not matched to this account');
+        }
+
+        $words = Word::where("user_id", Auth()->user()->id)->orderBy('title', 'ASC')->get();
+        if (!$words->count() >= 1) {
+            return redirect()->back()->withErrors('You have no secrets to delete.');
+        }
+        foreach ($words as $word) {
+            $word->delete();
+        }
+        return redirect()->back()->with('success','All of your secrets have been deleted.');
+
+    }
+    public function restore()
+    {
+        return view("word.restore");
+    }
+    public function executerestore(Request $request)
+    {
+        $request->validate([
+
+            'key' => ['required'],
+            'csvfile' => 'required|mimes:csv,txt',
+        ]);
+        if (!Hash::check($request->key, auth()->user()->password)) {
+            return redirect()->back()->withErrors('Password not matched to this account');
+        }
+
+      $file=  $request->file('csvfile');
+
+      $key= $request->key;
+      $tempPath = $file->getRealPath();
+      $secretArr = JackKrypt::csvToArray($tempPath);
+        foreach ($secretArr as $key => $value) {
+           // $value['Title']
+            $pre_hash =  $value['Title'] .  $value['Secret'];
+            $en_phrase = JackKrypt::encrypt( $value['Secret'], $request->key);
+            $word = new Word;
+            $word->user_id = auth()->user()->id;
+            $word->title =  $value['Title'];
+            $word->phrase =  $en_phrase;
+            $word->hash = Hash::make($pre_hash);
+            $word->save();
+        }
+
+        return redirect()
+            ->route('restore')
+            ->with('success', 'A Secret has been added sucessfully!');
+    }
+
     public function index()
     {
     }

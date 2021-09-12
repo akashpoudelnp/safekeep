@@ -17,6 +17,9 @@
                 @error('key')
                 <small class="text-red-600">{{$message}}</small>
                 @enderror
+                @if($errors->any())
+                    <small class="text-red-600">{{$errors->first()}}</small>
+                @endif
         </div>
                 <div class="text-center mt-6">
                     <button type="submit" class="py-3 w-64 text-xl text-white bg-blue-400 rounded-2xl">Decrypt</button>

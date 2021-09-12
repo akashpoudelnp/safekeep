@@ -16,11 +16,13 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
                 <div class="flex flex-col">
-                    <div class="tools flex flex-row-reverse place-items-stretch p-2">
-                        <a href="{{ url('word/create') }}"
-                            class="bg-green-400 rounded text-blue-50 hover:bg-green-300 p-1 mx-2">Add New</a>
+                    <div class="tools flex flex-row place-items-stretch p-2">
+                        <a href="{{ route('word.create') }}"
+                        class="bg-green-400 rounded text-blue-50 hover:bg-green-300 p-1 ">Add New</a>
+                        <a href="{{route("exportCSV")}}" class="bg-blue-400 rounded text-blue-50 hover:bg-blue-300 p-1 mx-2">Export as CSV</a>
 
-                        <a href="{{url("/exportCSV")}}" class="bg-blue-400 rounded text-blue-50 hover:bg-blue-300 p-1">Export as CSV</a>
+
+                          <a href="{{route("emptysecretsview")}}" class="bg-red-600 rounded text-red-50 hover:bg-red-400 p-1">Delete all</a>
                     </div>
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

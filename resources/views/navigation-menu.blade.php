@@ -25,6 +25,9 @@
                     <x-jet-nav-link href="{{ route('exportCSV') }}" :active="request()->routeIs('exportCSV')">
                         {{ __('Export Secrets') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('restore') }}" :active="request()->routeIs('restore')">
+                        {{ __('Restore Secrets') }}
+                    </x-jet-nav-link>
 
                 </div>
             </div>
