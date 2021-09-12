@@ -24,9 +24,7 @@ class WordController extends Controller
     }
     public function exportascsv(Request $request)
     {
-        if ($request->isMethod('get')) {
-            abort(404);
-        }
+
         $request->validate([
 
             'key' => ['required'],
@@ -43,7 +41,7 @@ class WordController extends Controller
         $fileName = "exported-safekeep-$now.csv";
         $words = Word::where("user_id", Auth()->user()->id)->orderBy('title', 'ASC')->get();
         if (!$words->count() >= 1) {
-            abort(404);
+            return redirect()->back()->withErrors('You have no secrets to export');
         }
         foreach ($words as $word) {
             $de_phrase[$word->id] = JackKrypt::decrypt($word->phrase, $key);

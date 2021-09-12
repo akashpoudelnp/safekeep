@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/offline', function () {
+    return view('vendor.laravelpwa.offline');
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', [HomeController::class,"dashboard"])->name('dashboard');
@@ -48,6 +51,3 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('word', WordController::class);
 });
 
-Route::get('/offline', function () {
-    return view('vendor/laravelpwa/offline');
-    });

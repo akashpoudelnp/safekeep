@@ -38,7 +38,8 @@ return [
                 'description' => 'A Dashboard of your secrets',
                 'url' => '/dashboard',
                 'icons' => [
-                    "src" => "https://s2.svgbox.net/octicons.svg?ic=home&color=000",
+                    "src" => "/images/icons/menu-96x96.png",
+                    "sizes"=> "96x96",
                     "purpose" => "any"
                 ]
             ],
@@ -47,7 +48,8 @@ return [
                 'description' => 'Add your deep secrets',
                 'url' => '/word/create',
                 'icons' => [
-                    "src" => "https://s2.svgbox.net/hero-outline.svg?ic=plus-circle&color=000",
+                    "src" => "/images/icons/add-96x96.png",
+                    "sizes"=> "96x96",
                     "purpose" => "any"
                 ]
             ]
