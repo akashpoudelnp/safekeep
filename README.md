@@ -14,13 +14,6 @@ Safe keep allows you to store your personal secrets in a encrypted environment. 
 - Requires password when you want to see your for decryption
 - Search your secrets like theres no tommorow.
 
-
-
-## Contributing
-If i have benefited you from my projects then buy me a beer
-
-
-
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
