@@ -19,7 +19,7 @@ Safe keep allows you to store your personal secrets in a encrypted environment. 
 ## Contributing
 If i have benefited you from my projects then buy me a beer
 
--`Etherium/ Binance / Matic:  0x007433DaAB9A6081553a932cB82679aA4E45A629 `
+
 
 ## License
 
