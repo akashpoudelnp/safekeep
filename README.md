@@ -1,4 +1,4 @@
- ![title](icon-250x250.png) <span class="p-2"><b>Safe</b>Keep</span>
+ ![title](public/images/icon-250x250.png) <span class="p-2"><b>Safe</b>Keep</span>
 ---
 <p align="center">
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
