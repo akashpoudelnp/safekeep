@@ -1,7 +1,6 @@
-<span class="p-2"><b>Safe</b>Keep</span>
+ ![title](icon-250x250.png) <span class="p-2"><b>Safe</b>Keep</span>
 ---
 <p align="center">
-<a href="#"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
