@@ -13,14 +13,14 @@ Safe keep allows you to store your personal secrets in a encrypted environment. 
 - Requires password when you want to see your for decryption
 - Search your secrets like theres no tommorow.
 ## Screenshots
- Adding Secret
-<img src="public/images/screenshots/add-secret.png" alt="Add Secret">
- Decrypt Secrets
- <img src="public/images/screenshots/decrypt.png" alt="Decrypt Secrets">
- List Secrets
- <img src="public/images/screenshots/all-secrets.png" alt="All Secrets">
- Restore from CSV file
- <img src="public/images/screenshots/restore.png" alt="Restore Secrets">
+ - Adding Secret
+ ![title](public/images/screenshots/add-secret.png)
+ - Decrypt Secrets
+  ![title](public/images/screenshots/decrypt.png)
+ - List Secrets
+  ![title](public/images/screenshots/all-secrets.png)
+ - Restore from CSV file
+  ![title](public/images/screenshots/restore.png)
 
 ## License
 
