@@ -11,6 +11,8 @@ Safe keep allows you to store your personal secrets in a encrypted environment. 
 - Easy to add and delete the secrets
 - Requires password when you want to see your for decryption
 - Search your secrets like theres no tommorow.
+- If someone changes the account password by some means then all of the secrets will be invalid
+   ![title](public/images/screenshots/changed-pass.png)
 ## Screenshots
  - Adding Secret
  ![title](public/images/screenshots/add-secret.png)
